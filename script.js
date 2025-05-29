@@ -122,3 +122,39 @@ function listar_mascotas() {
     });
     alert(lista);
 }
+
+function buscar_mascota() {
+    const nombre = prompt("Ingrese el nombre de la mascota a buscar:");
+    const mascota = mascotas.find(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+
+    if (mascota) {
+        alert(`Mascota encontrada:\nNombre: ${mascota.nombre}\nEspecie: ${mascota.especie}\nEdad: ${mascota.edad}\nPeso: ${mascota.peso}kg\nSalud: ${mascota.estadoSalud}`);
+    } else {
+        alert("Mascota no encontrada.");
+    }
+}
+
+function actualizar_salud() {
+    const nombre = prompt("Ingrese el nombre de la mascota:");
+    const mascota = mascotas.find(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+
+    if (mascota) {
+        const nuevoEstado = prompt("Ingrese el nuevo estado de salud (Sano, Enfermo, En tratamiento):");
+        mascota.estadoSalud = nuevoEstado;
+        alert("Estado de salud actualizado.");
+    } else {
+        alert("Mascota no encontrada.");
+    }
+}
+
+function eliminar_mascota() {
+    const nombre = prompt("Ingrese el nombre de la mascota a eliminar:");
+    const indice = mascotas.findIndex(m => m.nombre.toLowerCase() === nombre.toLowerCase());
+
+    if (indice !== -1) {
+        mascotas.splice(indice, 1);
+        alert("Mascota eliminada.");
+    } else {
+        alert("Mascota no encontrada.");
+    }
+}
