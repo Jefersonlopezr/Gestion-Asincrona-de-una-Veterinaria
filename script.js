@@ -91,3 +91,34 @@ function registrar_mascota() {
     mascotas.push(mascota);
     alert("Mascota registrada exitosamente.");
 }
+
+function listar_mascotas_por_dueno() {
+    const ID_dueno = parseInt(prompt("Ingrese el ID del dueno para ver sus mascotas registradas"));
+    const dueno = duenos.find(d => d.ID === ID_dueno);
+    if (!dueno) {
+        alert("El dueno no se encontró");
+        return;
+    }
+    const mascotas_dueno = mascotas.filter(m => m.ID_dueno === ID_dueno);
+    if (mascotas_dueno.length === 0) {
+        alert("Este dueno no tiene mascotas registradas.");
+        return;
+    }
+    let lista = `Mascotas de ${dueno.nombre}:\n`;
+    mascotas_dueno.forEach((m, index) => {
+        lista += `${index + 1}. Nombre; ${m.nombre}, Especie; ${m.especie}, Edad: ${m.edad} años, Peso: ${m.peso} kg, Estado de salud: ${m.estadoSalud}\n`;
+    });
+    alert(lista);
+}
+
+function listar_mascotas() {
+    if (mascotas.length === 0) {
+        alert("No hay mascotas registradas.");
+        return;
+    }
+    let lista = "Mascotas registradas:\n";
+    mascotas.forEach((m, index) => {
+        lista += `${index + 1}. Nombre: ${m.nombre}, Especie: ${m.especie}, Edad: ${m.edad} años, Peso: ${m.peso} kg, Estado de salud: ${m.estadoSalud}\n`;
+    });
+    alert(lista);
+}
